@@ -1,5 +1,6 @@
 "use strict";
 
+//holds all of our shopping list data
 const STORE = [
   { name: "apples", checked: false },
   { name: "oranges", checked: false },
@@ -7,9 +8,37 @@ const STORE = [
   { name: "bread", checked: false }
 ];
 
+function generateItemElement(item, itemIndex, template) {
+  return `
+    <li data-item-id="${item.id}">
+      <span class="shopping-item js-shopping-item ${
+        item.checked ? "shopping-item__checked" : ""
+      }">${item.name}</span>
+      <div class="shopping-item-controls">
+        <button class="shopping-item-toggle js-item-toggle">
+            <span class="button-label">check</span>
+        </button>
+        <button class="shopping-item-delete js-item-delete">
+            <span class="button-label">delete</span>
+        </button>
+      </div>
+    </li>`;
+}
+
+function generateShoppingItemsString(shoppingList) {
+  console.log("generating Shopping List Item");
+  const items = shoppingList.map((item, index) =>
+    generateItemElement(item, index)
+  );
+  return items.join("");
+}
+
 function renderShoppingList() {
   // renders the store
   console.log("`renderShoppingList` ran");
+  const shoppingListItemsString = generateShoppingItemsString(STORE);
+  //insert into the DOM
+  $(".js-shopping-list").html(shoppingListItemsString);
 }
 
 function handleNewItemSubmit() {
@@ -34,6 +63,7 @@ function handleShoppingList() {
   handleNewItemSubmit();
   handleItemCheckClicked();
   handleDeleteItemClicked();
+  generateShoppingItemsString();
 }
 
 $(handleShoppingList);
