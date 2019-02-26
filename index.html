@@ -26,8 +26,26 @@
         />
         <button type="submit">Add item</button>
       </form>
-      <label for="filter_checkbox"></label>
-      <input id="filter_checkbox" type="checkbox" /> Un-checked items only<br />
+      <div class="filter-controls">
+        <input
+          type="checkbox"
+          id="hide-completed-toggle"
+          class="js-hide-completed-toggle"
+        />
+        <label for="hide-completed-toggle">Hide Completed</label>
+      </div>
+      <div class="search-container">
+        <form>
+          <input
+            id="searchbox"
+            type="text"
+            placeholder="Search.."
+            name="search"
+          />
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+
       <ul class="shopping-list js-shopping-list"></ul>
     </div>
     <script
